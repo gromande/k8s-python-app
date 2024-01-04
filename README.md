@@ -1,2 +1,2 @@
-# hello-python
-Very simple hello world python Flask application.
+# k8s-python-app
+Simple python Flask application for Docker and K8s learning.
