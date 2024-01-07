@@ -17,6 +17,9 @@ kind: Deployment
 metadata:
   name: python-app
 spec:
+  selector:
+    matchLabels:
+      run: python-app
   replicas: 4
   template:
     metadata:
