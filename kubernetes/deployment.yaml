@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: k8s-python-app:latest
+        image: gromande/k8s-python-app:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
