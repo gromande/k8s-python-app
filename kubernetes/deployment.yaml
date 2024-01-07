@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: guillermoroman/public:k8s-python-app
+        image: guillermoroman/k8s-python-app:latest
         ports:
         - containerPort: 5000
