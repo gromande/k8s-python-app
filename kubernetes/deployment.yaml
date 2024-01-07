@@ -19,7 +19,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: python-app
+      app: python-app
   replicas: 4
   template:
     metadata:
