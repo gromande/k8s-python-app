@@ -29,6 +29,5 @@ spec:
       containers:
       - name: python-app
         image: guillermoroman/public:k8s-python-app
-        imagePullPolicy: Never
         ports:
         - containerPort: 5000
