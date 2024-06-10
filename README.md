@@ -1,6 +1,12 @@
 # k8s-python-app
 Simple python Flask application for Docker and K8s learning.
 
+## Active Virtual Environment
+```
+cd app/
+source .venv/bin/activate
+```
+
 ## Running Locally
 ```
 cd app/
