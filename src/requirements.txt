@@ -1,1 +1,4 @@
-Flask
+Flask==3.0.3
+#black==20.8b1
+#flake8==3.9.0
+pytest==8.2.2

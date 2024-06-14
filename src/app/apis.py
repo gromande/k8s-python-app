@@ -1,6 +1,8 @@
 import socket
-from flask import current_app as app
+from flask import jsonify, current_app as app
 
-@app.route("/")
+@app.route("/hello")
 def hello():
-    return "Hello from Python! " + socket.gethostname()
+  response_data = {}
+  response_data["msg"] = "Hello from Python! " + socket.gethostname() 
+  return jsonify(response_data) 
