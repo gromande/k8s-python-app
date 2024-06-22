@@ -1,0 +1,16 @@
+variables:
+  IMAGE_NAME: guillermoroman/k8s-python-app
+  IMAGE_TAG: 1.0
+
+stages:
+  - test
+
+run_tests:
+  stage: test
+  tags:
+    - docker
+  image: python:3.12-slim-bullseye
+  before_script:
+    - apt-get update && apt-get install make
+  script:
+    - make test
