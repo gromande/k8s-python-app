@@ -13,7 +13,7 @@ def hello():
 @app.route("/api/inc")
 def inc():
     response_data = {}
-    number = int(request.args.get('number'))
+    number = int(request.args.get("number"))
     response_data["old"] = number
     response_data["new"] = inc_dec.increment(number)
     return jsonify(response_data)
@@ -22,7 +22,7 @@ def inc():
 @app.route("/api/dec")
 def dec():
     response_data = {}
-    number = int(request.args.get('number'))
+    number = int(request.args.get("number"))
     response_data["old"] = number
     response_data["new"] = inc_dec.decrement(number)
     return jsonify(response_data)

@@ -17,7 +17,7 @@ def test_api_inc(client):
     assert resp.headers["Content-Type"] == "application/json"
     resp_payload = json.loads(resp.data)
     assert resp_payload["old"] == number
-    assert resp_payload["new"] == number+1
+    assert resp_payload["new"] == number + 1
 
 
 def test_api_dec(client):
@@ -27,4 +27,4 @@ def test_api_dec(client):
     assert resp.headers["Content-Type"] == "application/json"
     resp_payload = json.loads(resp.data)
     assert resp_payload["old"] == number
-    assert resp_payload["new"] == number-1
+    assert resp_payload["new"] == number - 1

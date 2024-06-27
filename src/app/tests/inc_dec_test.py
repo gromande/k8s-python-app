@@ -1,4 +1,4 @@
-from app import inc_dec    # The code to test
+from app import inc_dec  # The code to test
 
 
 def test_increment():
