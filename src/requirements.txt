@@ -1,5 +1,5 @@
 Flask==3.0.3
-#black==20.8b1
-#flake8==3.9.0
+black==24.4.2
+flake8==7.1.0
 pytest==8.2.2
 gunicorn==22.0.0
