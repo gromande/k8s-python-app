@@ -18,6 +18,8 @@ run_tests:
 
 build_image:
   stage: build
+  tags:
+    - docker
   image: docker:20.10.16
   before_script:
     - docker login -u $REGISTRY_USER -p $REGISTRY_TOKEN
