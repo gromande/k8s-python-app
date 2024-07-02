@@ -5,6 +5,7 @@ variables:
 stages:
   - test
   - build
+  - deploy
 
 run_tests:
   stage: test
@@ -26,3 +27,17 @@ build_image:
   script:
     - docker build -f ./build/Dockerfile -t $IMAGE_NAME:$IMAGE_TAG .
     - docker push $IMAGE_NAME:$IMAGE_TAG
+
+deploy_app:
+  stage: deploy
+  variables:
+    KUBECTLCONFIG: $KUBECTL_CONFIG_FILE
+  tags:
+    - docker
+  image: guillermoroman/builder_k8s:stable
+  before_script:
+    - chmod +r $KUBECTL_CONFIG_FILE
+  script:
+    - echo "UI variable $KUBECTL_CONFIG_FILE"
+    - echo "Pipeline vairable $KUBECTLCONFIG"
+    - kubectl get nodes
