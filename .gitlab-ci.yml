@@ -35,9 +35,5 @@ deploy_app:
   tags:
     - docker
   image: guillermoroman/builder_k8s:stable
-  before_script:
-    - echo "UI variable $KUBECTL_CONFIG_FILE"
-    - echo "Pipeline vairable $KUBECONFIG"
-    - chmod +r $KUBECTL_CONFIG_FILE
   script:
-    - kubectl get nodes
+    - env
