@@ -31,7 +31,7 @@ build_image:
 deploy_app:
   stage: deploy
   variables:
-    KUBECTLCONFIG: $KUBECTL_CONFIG_FILE
+    KUBECONFIG: $KUBECTL_CONFIG_FILE
   tags:
     - docker
   image: guillermoroman/builder_k8s:stable
@@ -39,5 +39,5 @@ deploy_app:
     - chmod +r $KUBECTL_CONFIG_FILE
   script:
     - echo "UI variable $KUBECTL_CONFIG_FILE"
-    - echo "Pipeline vairable $KUBECTLCONFIG"
+    - echo "Pipeline vairable $KUBECONFIG"
     - kubectl get nodes
