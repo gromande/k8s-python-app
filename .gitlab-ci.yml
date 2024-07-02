@@ -34,5 +34,5 @@ deploy_app:
     - docker
   image: guillermoroman/builder_k8s:stable
   script:
-    - env
     - kubectl get nodes
+    - kubectl apply -f ./deploy/deployment.yaml
