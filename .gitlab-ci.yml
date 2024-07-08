@@ -1,3 +1,10 @@
+.base:
+  tags:
+    - docker
+  image: guillermoroman/python_base:stable
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 variables:
   IMAGE_NAME: guillermoroman/k8s-python-app
   IMAGE_TAG: 1.0
@@ -7,20 +14,34 @@ stages:
   - build
   - deploy
 
-run_tests:
+unit_tests:
+  extends: .base
   stage: test
-  tags:
-    - docker
-  image: python:3.12-slim-bullseye
   before_script:
     - apt-get update && apt-get install make
   script:
     - make test
 
+semgrep:
+  extends: .base
+  stage: test
+  image: guillermoroman/semgrep:stable
+  variables:
+    RESULTS_DIR: ./tests/semgrep
+    SARIF_RESULTS: results.sarif
+    JUNIT_RESULTS: results.junit.xml
+  script:
+    - "/bin/bash ./build/bin/semgrep-scan.sh $RESULTS_DIR $SARIF_RESULTS $JUNIT_RESULTS"
+  artifacts:
+    when: always
+    paths:
+      - $RESULTS_DIR/*
+    reports:
+      junit: $RESULTS_DIR/$JUNIT_RESULTS
+
 build_image:
+  extends: .base
   stage: build
-  tags:
-    - docker
   image: docker:20.10.16
   before_script:
     - docker login -u $REGISTRY_USER -p $REGISTRY_TOKEN
@@ -28,10 +49,9 @@ build_image:
     - docker build -f ./build/Dockerfile -t $IMAGE_NAME:$IMAGE_TAG .
     - docker push $IMAGE_NAME:$IMAGE_TAG
 
-deploy_app:
+.deploy_app:
+  extends: .base
   stage: deploy
-  tags:
-    - docker
   image: guillermoroman/builder_k8s:stable
   script:
     - kubectl get nodes
