@@ -17,8 +17,6 @@ stages:
 unit_tests:
   extends: .base
   stage: test
-  before_script:
-    - apt-get update && apt-get install make
   script:
     - make test
 
